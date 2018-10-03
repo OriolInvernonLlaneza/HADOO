@@ -1,5 +1,3 @@
-# HADOO-del-suicidio
-Edwars es un ADOOnis lmao
-
+Este es el readme de los doc del repo. 
 
 Link carpeta OneDrive: https://unioviedo-my.sharepoint.com/:f:/g/personal/uo244707_uniovi_es/EhULJVh4h8lMl9EpcsCGDzEBxYnzMigVR1I2Jb_fTKtwjg?e=GfbqVk

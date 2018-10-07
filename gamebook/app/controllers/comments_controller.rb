@@ -25,51 +25,56 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @game = Game.find(params[:comment][:game_id])
-    @comment = Comment.new(game: @game, user: current_user, body: params[:comment][:body])
+    unless params[:comment][:body] == ""
+      @comment = Comment.new(game: @game, user: current_user, body: params[:comment][:body])
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @game, alert: 'Comentario creado satisfactoriamente.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { redirect_to @game, alert: 'Comentario no creado!' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @comment.save
+          format.html {redirect_to @game, alert: 'Comentario creado satisfactoriamente.'}
+          format.json {render :show, status: :created, location: @comment}
+        else
+          format.html {redirect_to @game, alert: 'Comentario no creado!'}
+          format.json {render json: @comment.errors, status: :unprocessable_entity}
+        end
+      end
+    else
+      redirect_to @game, alert: 'Comentarios vacíos no permitidos!'
+    end
+  end
+
+    # PATCH/PUT /comments/1
+    # PATCH/PUT /comments/1.json
+    def update
+      respond_to do |format|
+        if @comment.update(comment_params)
+          format.html {redirect_to @comment, notice: 'Comment was successfully updated.'}
+          format.json {render :show, status: :ok, location: @comment}
+        else
+          format.html {render :edit}
+          format.json {render json: @comment.errors, status: :unprocessable_entity}
+        end
       end
     end
-  end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
-  def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    # DELETE /comments/1
+    # DELETE /comments/1.json
+    def destroy
+      @comment.destroy
+      respond_to do |format|
+        format.html {redirect_to comments_url, notice: 'Comment was successfully destroyed.'}
+        format.json {head :no_content}
       end
     end
-  end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
-  def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+    private
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+      params.require(:comment).permit(:body)
     end
   end
-
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def comment_params
-    params.require(:comment).permit(:body)
-  end
-end

@@ -25,8 +25,9 @@ class GamelistsController < ApplicationController
   # POST /gamelists
   # POST /gamelists.json
   def create
-    game = Game.find(params[:game_id])
-    @gamelist = Gamelist.create!(status: params[:status], game: game, user: current_user) rescue Gamelist.where(user: current_user, game: game).update(status: params[:status])
+    @game = Game.find(params[:game_id])
+    @gamelist = Gamelist.create!(status: params[:status], game: @game, user: current_user) rescue Gamelist.where(user: current_user, game: @game).update(status: params[:status])
+    redirect_to @game, alert: "Lista actualizada satisfactoriamente!"
   end
 
   # PATCH/PUT /gamelists/1

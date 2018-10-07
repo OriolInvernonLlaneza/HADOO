@@ -76,3 +76,27 @@ h1 {
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
+
+#comments {
+  margin-bottom: 2em;
+}
+
+#comments h3 {
+  font-size: 18px;
+}
+
+#comments > section {
+  margin-left: 2em;
+}
+
+.comment {
+  margin-bottom: 1em;
+}
+
+.comment p {
+  margin-left: 1em;
+}
+
+.createComment {
+  margin-top: 2em;
+}

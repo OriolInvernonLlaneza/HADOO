@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = Comment.new(user: current_user)
   end
 
   # GET /comments/1/edit
@@ -24,14 +24,15 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @game = Game.find(params[:comment][:game_id])
+    @comment = Comment.new(game: @game, user: current_user, body: params[:comment][:body])
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @game, alert: 'Comentario creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        format.html { render @game, alert: 'Comentario no creado!' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +70,6 @@ class CommentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(:body, :user)
+    params.require(:comment).permit(:body)
   end
 end

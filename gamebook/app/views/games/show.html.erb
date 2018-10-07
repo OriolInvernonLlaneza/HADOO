@@ -46,9 +46,18 @@
         <% if @game.comments.blank? %>
             <h3>Aún no hay comentarios, se tu el primero!</h3>
         <% else %>
-            <%= render @game.comments %>
+            <% @comments.each do |c| %>
+                <section>
+                  <p> <%= c.body %></p>
+                </section>
+            <% end %>
         <% end %>
       </section>
+      <%= form_for Comment.new, url_for: comments_url, method: :post, params: {game_id: @game.id}, html: {class: "nifty_form"} do |f| %>
+          <%= hidden_field_tag "comment[game_id]", "#{@game.id}" %>
+          <%= f.text_area :body, size: "100x20" %>
+          <%= f.submit "Crear" %>
+      <% end %>
     </section>
   </div>
 </div>

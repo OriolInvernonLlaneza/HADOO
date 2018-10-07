@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to @game, alert: 'Comentario creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render @game, alert: 'Comentario no creado!' }
+        format.html { redirect_to @game, alert: 'Comentario no creado!' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

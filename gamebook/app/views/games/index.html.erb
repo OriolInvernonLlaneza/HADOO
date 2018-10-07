@@ -2,7 +2,7 @@
 
 <h1>Games</h1>
 
-<table>
+<!--<table>
   <thead>
     <tr>
       <th>Titulo</th>
@@ -15,9 +15,6 @@
 
   <tbody>
     <% @games.each do |game| %>
-      <section class="col-sm-6 col-md-3">
-        <%= link_to (image_tag game.image_url(:medium), class: 'image'), game, class="thumbnail" %>
-      </section>
       <!--<tr>
         <td><%= game.titulo %></td>
         <td><%= game.sinopsis %></td>
@@ -26,11 +23,21 @@
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
         <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>-->
+      </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br>-->
+
+<section class="row">
+  <% @games.each do |game| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag game.image_url, class: 'image'), game %>
+      </div>
+    </div>
+  <% end %>
+</section>
 
 <%= link_to 'New Game', new_game_path %>

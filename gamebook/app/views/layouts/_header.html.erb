@@ -8,13 +8,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"><%= link_to "Juegos", games_path, class: "nav-link active" %></li>
-      <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "Mi lista", games_path, class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "Amigos", games_path, class: "nav-link disabled" %></li>
-      <% else %>
-        <li class="nav-item"><%= link_to "Registrarse", new_user_registration_path, class: "nav-link active" %></li>
-        <li class="nav-item"><%= link_to "Entrar", new_user_session_path, class: "nav-link active" %></li>
-      <% end %>
+      <li class="nav-item"><%= link_to "Mi lista", games_path, class: "nav-link active" %></li>
+      <li class="nav-item"><%= link_to "Amigos", games_path, class: "nav-link disabled" %></li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">

@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :uddapte, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -15,6 +15,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @comments = Comment.joins(:game).where("games.id = ?", @game.id).order("created_at DESC")
   end
 
   # GET /games/new

@@ -2,8 +2,8 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <div class="row">
-      <div class="col-md-4">
+    <section id="gameInfo" class="row">
+      <div class="gameIcon col-md-4">
         <%= image_tag @game.image_url %>
       </div>
       <div class="col-md-7 col-md-offset-1">
@@ -21,9 +21,11 @@
               </tr>
             </tbody>
           </table>
-          <h2>Aún no hay comentarios en este juego!</h2>
         </div>
       </div>
-    </div>
+    </section>
+    <section id="comments">
+      <h2>Comentarios</h2>
+    </section>
   </div>
 </div>

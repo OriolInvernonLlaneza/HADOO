@@ -1,0 +1,17 @@
+<%= form_with(model: gamelist, local: true) do |form| %>
+  <% if gamelist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gamelist.errors.count, "error") %> prohibited this gamelist from being saved:</h2>
+
+      <ul>
+      <% gamelist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

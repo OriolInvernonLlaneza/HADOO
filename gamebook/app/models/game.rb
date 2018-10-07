@@ -3,7 +3,9 @@ require 'json'
 require 'igdb_client'
 
 class Game < ApplicationRecord
-
+  has_many :gamelists
+  has_many :users, through: :gamelists
+  has_many :comments
 
   def self.get_few_games_igdb
     Game.get_games_igdb

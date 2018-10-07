@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_150648) do
+ActiveRecord::Schema.define(version: 2018_10_07_155038) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "game_id"
     t.integer "user_id"
+    t.text "body"
     t.index ["game_id"], name: "index_comments_on_game_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

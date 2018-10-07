@@ -11,7 +11,7 @@
     <% @list.each do |game| %>
       <tr>
         <td><%= game.game.titulo %></td>
-        <td></td>
+        <td><%= gamelist.status %></td>
         <td>
           <%= link_to root_url + "gamelists/" + game.id.to_s, method: :delete, data: {confirm: "Estás fijo loco?"} %>
         </td>

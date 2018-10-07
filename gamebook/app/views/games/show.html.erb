@@ -19,6 +19,20 @@
               <td><strong>Fecha de lanzamiento:</strong></td>
               <td><%= @game.lanzamiento %></td>
             </tr>
+            <tr>
+              <td>
+                <%= button_to('Añadir a la lista como deseado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Deseado'}) %>
+              </td>
+              <td>
+                <%= button_to('Añadir a la lista como obtenido', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Obtenido'}) %>
+              </td>
+              <td>
+                <%= button_to('Añadir a la lista como jugado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Jugado'}) %>
+              </td>
+              <td>
+                <%= button_to('Eliminar de mi lista', gamelist_path, method: :delete, params: {game_id: @game.id}) %>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
@@ -29,8 +43,8 @@
       <section class="createCom">
         <h3>Deja tu comentario</h3>
         <%= form_for([@game, @game.comments.build]) do |f| %>
-          <% f.text_area :body %>
-          <% f.submit %>
+            <% f.text_area :body %>
+            <% f.submit %>
         <% end %>
       </section>
       <%= render @game.comments %>

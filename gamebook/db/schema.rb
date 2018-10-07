@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_155038) do
     t.integer "user_id"
     t.integer "game_id"
     t.index ["game_id"], name: "index_gamelists_on_game_id"
-    t.index ["user_id"], name: "index_gamelists_on_user_id"
+    t.index ["user_id"], name: "index_gamelists_on_user_id", unique: true
   end
 
   create_table "games", force: :cascade do |t|

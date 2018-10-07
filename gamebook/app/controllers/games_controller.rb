@@ -5,7 +5,11 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    if params[:search].nil?
+      @games = Game.all
+    else
+      @games = Game.where("titulo like ?", "%#{params[:search]}%")
+    end
   end
 
   # GET /games/1
@@ -29,11 +33,11 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
+        format.html {redirect_to @game, notice: 'Game was successfully created.'}
+        format.json {render :show, status: :created, location: @game}
       else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @game.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -43,11 +47,11 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-        format.json { render :show, status: :ok, location: @game }
+        format.html {redirect_to @game, notice: 'Game was successfully updated.'}
+        format.json {render :show, status: :ok, location: @game}
       else
-        format.html { render :edit }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @game.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -57,19 +61,19 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to games_url, notice: 'Game was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:titulo, :sinopsis, :lanzamiento, :image_url)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params.require(:game).permit(:titulo, :sinopsis, :lanzamiento, :image_url)
+  end
 end

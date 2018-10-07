@@ -23,7 +23,7 @@ class Game < ApplicationRecord
       games = IGDB::API.games({"filter[rating][gt]" => "85", "filter[first_release_date][gt]" => "1286391913000", "filter[release_dates.platform][any]" => "48,49,12,9", fields: "name,summary,first_release_date,cover", order: "first_release_date:desc", limit: 50, offset: offset})
     end
     games.each do |g|
-      Game.create(titulo: g.name, sinopsis: g.summary, lanzamiento: Date.strptime((g.first_release_date / 1000).to_s, '%s'), image_url: "http:#{g.cover.url}")
+      Game.create(titulo: g.name, sinopsis: g.summary, lanzamiento: Date.strptime((g.first_release_date / 1000).to_s, '%s'), image_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/#{g.cover.cloudinary_id}.jpg")
     end
     return games
   end

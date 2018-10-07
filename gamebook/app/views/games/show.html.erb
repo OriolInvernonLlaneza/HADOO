@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @game.titulo %>
-</p>
-
-<p>
-  <strong>Sinopsis:</strong>
-  <%= @game.sinopsis %>
-</p>
-
-<p>
-  <strong>Lanzamiento:</strong>
-  <%= @game.lanzamiento %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @game.image_url %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @game.image_url(:medium) %>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <h1><%= @game.titulo %></h1>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Sinopsis:</strong></td>
+                <td><%= @game.sinopsis %></td>
+              </tr>
+              <tr>
+                <td><strong>Fecha de lanzamiento:</strong></td>
+                <td><%= @game.lanzamiento %></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Aún no hay comentarios en este juego!</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

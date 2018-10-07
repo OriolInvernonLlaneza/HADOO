@@ -19,16 +19,18 @@
             </tr>
             <tr>
               <td>
-                <%= button_to('Añadir a la lista como deseado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Deseado'}) %>
+                <%= button_to('Añadir a la lista como deseado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Deseado'}, class: "btn btn-primary") %>
               </td>
               <td>
-                <%= button_to('Añadir a la lista como obtenido', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Obtenido'}) %>
+                <%= button_to('Añadir a la lista como obtenido', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Obtenido'}, class: "btn btn-info") %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= button_to('Añadir a la lista como jugado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Jugado'}, class: "btn btn-success") %>
               </td>
               <td>
-                <%= button_to('Añadir a la lista como jugado', gamelists_path, method: :post, params: {game_id: @game.id, status: 'Jugado'}) %>
-              </td>
-              <td>
-                <%= button_to('Eliminar de mi lista', gamelist_path, method: :delete, params: {game_id: @game.id}) %>
+                <%= button_to('Eliminar de mi lista', gamelist_path, method: :delete, params: {game_id: @game.id}, class: "btn btn-danger") %>
               </td>
             </tr>
             </tbody>
@@ -47,7 +49,6 @@
             <%= render @game.comments %>
         <% end %>
       </section>
-      <%= render 'comments/form' %>
     </section>
   </div>
 </div>

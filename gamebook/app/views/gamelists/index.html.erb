@@ -1,34 +1,26 @@
+<h1>Mi lista</h1>
 
-
-<h1>Gamelists</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th>Portada</th>
-    <th>Título</th>
-    <th>Estado</th>
-    <th>Eliminar</th>
-  </tr>
+<table class="listaPersonal table table-bordered table-striped">
+  <thead class="myheader">
+    <tr>
+      <th>Portada</th>
+      <th>Título</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
   </thead>
 
   <tbody>
   <% @gamelists.each do |gamelist| %>
-      <tr>
-        <td>
-          <div class="gameIcon col-md-4">
-            <%= image_tag gamelist.game .image_url %>
-          </div>
-        </td>
-        <td><%= gamelist.game.titulo %></td>
-        <td><%= gamelist.status %></td>
+    <tr>
+      <td>
+        <%= link_to (image_tag gamelist.game.image_url), gamelist.game %>
+      </td>
+      <td><%= gamelist.game.titulo %></td>
+      <td><%= gamelist.status %></td>
 
-        <td><%= link_to 'Destroy', gamelist, method: :delete, data: {confirm: "Estás seguro?"} %></td>
-      </tr>
+      <td><%= link_to 'Eliminar', gamelist, method: :delete, data: {confirm: "Estás seguro?"}, class: "btn btn-outline-danger" %></td>
+    </tr>
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Gamelist', new_gamelist_path %>

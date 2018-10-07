@@ -5,7 +5,7 @@ class GamelistsController < ApplicationController
   # GET /gamelists
   # GET /gamelists.json
   def index
-    @gamelists = current_user.gamelists
+    @gamelists = current_user.gamelists.joins(:game).order("games.titulo ASC")
   end
 
   # GET /gamelists/1
@@ -46,8 +46,9 @@ class GamelistsController < ApplicationController
   # DELETE /gamelists/1
   # DELETE /gamelists/1.json
   def destroy
-    game = Game.find(params[:game_id])
+    game = Game.find(params[:game_id]) rescue Gamelist.find(params[:id]).game
     Gamelist.where(user: current_user, game: game).destroy_all
+    redirect_to gamelists_url
   end
 
   private

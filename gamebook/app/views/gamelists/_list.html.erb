@@ -3,6 +3,7 @@
     <thead>
     <tr>
       <th>Título</th>
+      <th>Portada</th>
       <th>Estado</th>
       <th>Eliminar</th>
     </tr>
@@ -11,6 +12,7 @@
     <% @list.each do |game| %>
       <tr>
         <td><%= game.game.titulo %></td>
+
         <td><%= gamelist.status %></td>
         <td>
           <%= link_to root_url + "gamelists/" + game.id.to_s, method: :delete, data: {confirm: "Estás fijo loco?"} %>

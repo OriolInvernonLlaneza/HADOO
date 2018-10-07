@@ -11,7 +11,6 @@ class GamelistsController < ApplicationController
   # GET /gamelists/1
   # GET /gamelists/1.json
   def show
-    @comments = Comment.joins(:gamelist).where("gamelists.id = ?", @gamelist.id).order("created_at DESC")
   end
 
   # GET /gamelists/new

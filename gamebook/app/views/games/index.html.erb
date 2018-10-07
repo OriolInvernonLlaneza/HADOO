@@ -1,43 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Games</h1>
+<h1>Videojuegos</h1>
 
-<!--<table>
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Sinopsis</th>
-      <th>Lanzamiento</th>
-      <th>Image url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
-      <!--<tr>
-        <td><%= game.titulo %></td>
-        <td><%= game.sinopsis %></td>
-        <td><%= game.lanzamiento %></td>
-        <td><%= game.image_url %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>-->
-
-<section class="row">
+<section class="juegos row">
   <% @games.each do |game| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <%= link_to (image_tag game.image_url, class: 'image'), game %>
+        <%= link_to (image_tag game.image_url, class: 'image img-thumbnail'), game %>
       </div>
     </div>
   <% end %>
 </section>
-
-<%= link_to 'New Game', new_game_path %>

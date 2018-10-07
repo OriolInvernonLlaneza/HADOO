@@ -14,7 +14,7 @@
   <% @gamelists.each do |gamelist| %>
     <tr>
       <td>
-        <%= link_to (image_tag gamelist.game.image_url), gamelist.game %>
+        <%= link_to (image_tag gamelist.game.image_url, alt: "Portada del videojuego"), gamelist.game %>
       </td>
       <td><%= gamelist.game.titulo %></td>
       <td><%= gamelist.status %></td>

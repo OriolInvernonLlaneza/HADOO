@@ -85,7 +85,7 @@ h1 {
   font-size: 18px;
 }
 
-#comments > section {
+#comments > section, #comments > h3 {
   margin-left: 2em;
 }
 
@@ -99,4 +99,9 @@ h1 {
 
 .createComment {
   margin-top: 2em;
+}
+
+.createComment textarea {
+  width: 50em;
+  height: 5em;
 }

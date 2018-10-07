@@ -2,7 +2,7 @@
   <div class="panel-body">
     <section id="gameInfo" class="row">
       <div class="gameIcon col-md-4">
-        <%= image_tag @game.image_url %>
+        <%= image_tag @game.image_url, alt: "Portada del videojuego" %>
       </div>
       <div class="col-md-7 col-md-offset-1">
         <h1><%= @game.titulo %></h1>
@@ -43,24 +43,23 @@
     <section id="comments">
       <h2>Comentarios</h2>
       <% unless current_user.blank? %>
-        <section>
-          <% if @game.comments.blank? %>
-            <h3>Aún no hay comentarios, se tú el primero!</h3>
-          <% else %>
-            <% @comments.each do |c| %>
-              <section class="comment">
-                <h3><%= c.user.email %> escribió:</h3>
-                <p> <%= c.body %></p>
-              </section>
-            <% end %>
+        <% if @game.comments.blank? %>
+          <h3>Aún no hay comentarios, se tú el primero!</h3>
+        <% else %>
+          <% @comments.each do |c| %>
+            <section class="comment">
+              <h3><%= c.user.email %> escribió:</h3>
+              <p> <%= c.body %></p>
+            </section>
           <% end %>
-        </section>
+        <% end %>
         <section class="createComment">
           <h3>Escribe tu comentario:</h3>
           <%= form_for Comment.new, url_for: comments_url, method: :post, params: {game_id: @game.id}, html: {class: "nifty_form"} do |f| %>
             <%= hidden_field_tag "comment[game_id]", "#{@game.id}" %>
-            <%= f.text_area :body, size: "80x5", class: "form-control rounded-0" %> <br/>
+            <%= f.text_area :body, class: "form-control rounded-0", id: "body"%> <br/>
             <%= f.submit "Crear", class: "btn btn-success" %>
+            <label for="body" style="visibility: hidden">Contenido del comentario</label>
           <% end %>
         </section>
       <% else %>
@@ -76,8 +75,8 @@
             <% end %>
             <h3>Haz login para crear un comentario</h3>
           <% end %>
+        </section>
       <% end %>
-      </section>
     </section>
   </div>
 </div>

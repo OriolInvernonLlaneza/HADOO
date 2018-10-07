@@ -3,10 +3,11 @@
 <h1>Videojuegos</h1>
 
 <section class="juegos row">
+  <h2 style="visibility: hidden"></h2>
   <% @games.each do |game| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <%= link_to (image_tag game.image_url, class: 'image img-thumbnail'), game %>
+        <%= link_to (image_tag game.image_url, class: 'image img-thumbnail', alt: "Portada del videojuego"), game %>
       </div>
     </div>
   <% end %>
